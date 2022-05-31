@@ -33,215 +33,187 @@ body {
     font-size: 6em;
 }
 
-.game-info-container{
-    grid-column: 1/-1;
+.game-info-container {
+    grid-column: 1 / -1;
     display: flex;
     justify-content: space-between;
 }
 
-.game-info{
+.game-info {
     color: #FFBB89;
     font-size: 4em;
 }
 
-.game-container{
+.game-container {
     margin: 50px auto;
     display: grid;
     grid-template-columns: repeat(4, auto);
-    grid-gap:10px;
-    margin: 50px;
+    grid-gap: 10px;
     justify-content: center;
     perspective: 500px;
 }
 
-.card{
+.card {
     position: relative;
+    cursor: url("Assets/Cursors/GhostHover.cur"), auto;
     height: 175px;
     width: 125px;
 }
 
-.card:hover{
-    cursor: url("assets/Cursors/GhostHover.cur"), auto;
-}
-
 .card-face {
     position: absolute;
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow:hidden;
-    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
     border-radius: 12px;
     border-width: 1px;
     border-style: solid;
+    overflow: hidden;
     transition: transform 500ms ease-in-out;
+    backface-visibility: hidden;
 }
-.card.visible .card-back{
+
+.card.visible .card-back {
     transform: rotateY(-180deg);
 }
-.card.visible .card-front{
+
+.card.visible .card-front {
     transform: rotateY(0);
 }
-.card.matched .card-front .card-value{
+
+.card.matched .card-front .card-value {
     animation: dance 1s linear infinite 500ms;
 }
 
-.card-back{
+.card-back {
     background-color: black;
     border-color: #FF6D00;
     transform: rotateY(0);
 }
-.cob-web{
+
+.cob-web {
     position: absolute;
+    transition: width 100ms ease-in-out, height 100ms ease-in-out;
     width: 47px;
     height: 47px;
-    transition: width 100ms ease-in-out, height 100ms ease-in-out;
 }
-.card-face:hover .cob-web{
+
+.card-face:hover .cob-web {
     width: 52px;
     height: 52px;
 }
 
-.cob-web-top-left{
+.cob-web-top-left {
     transform: rotate(270deg);
     top: 0;
     left: 0;
 }
-.cob-web-top-right{
+
+.cob-web-top-right {
     top: 0;
     right: 0;
 }
 
-.cob-web-bottom-left{
+.cob-web-bottom-left {
     transform: rotate(180deg);
-    bottom: 0%;
+    bottom: 0;
     left: 0;
 }
-.cob-web-bottom-right{
+
+.cob-web-bottom-right {
     transform: rotate(90deg);
     bottom: 0;
     right: 0;
 }
 
-.spider{
+.spider {
     align-self: flex-start;
     transition: transform 100ms ease-in-out;
     transform: translateY(-10px);
 }
 
-.card-back:hover .spider{
+.card-back:hover .spider {
     transform: translateY(0);
 }
-.card-value{
+
+.card-value {
+    position: relative;
     transition: transform 100ms ease-in-out;
     transform: scale(.9);
 }
-.card-front:hover .card-value{
+
+.card-front:hover .card-value {
     transform: scale(1);
 }
-.card-front{
+
+.card-front {
     background-color: #FFBB89;
     border-color: #333;
     transform: rotateY(180deg);
 }
-.overlay-text{
-    display: none;
-    position: fixed;
+
+.overlay-text {
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* display: flex; */
+    z-index: 100;
+    display: none;
+    position: fixed;
     justify-content: center;
     align-items: center;
-    z-index: 100;
     flex-direction: column;
     color: #FF6D00;
     font-family: Creepy, serif;
     transition: background-color 500ms, font-size 500ms;
 }
-.overlay-text-small{
+
+.overlay-text-small {
     font-size: .3em;
 }
-.overlay-text.visible{
+
+.overlay-text.visible {
     display: flex;
-    flex-direction: column;
     animation: overlay-grow 500ms forwards;
 }
 
+@keyframes dance {
 
+    0%,
+    100% {
+        transform: rotate(0)
+    }
 
+    25% {
+        transform: rotate(-30deg)
+    }
 
-
-
-
-
+    75% {
+        transform: rotate(30deg)
+    }
+}
 
 @keyframes overlay-grow {
-    from{
-        background-color: rgb(0, 0, 0, 0);
+    from {
+        background-color: rgba(0, 0, 0, 0);
         font-size: 0;
     }
-    to{
-        background-color: rgb(0, 0, 0, .8);
+
+    to {
+        background-color: rgba(0, 0, 0, .8);
         font-size: 10em;
     }
 }
 
-@keyframes dance{
-    0%, 100%{
-        transform: rotate(0);
-    }
-    25%{
-        transform: rotate(-30deg);
-    }
-    75%{
-        transform: rotate(30deg);
-    }
-}
 @media (max-width: 600px) {
-    .page-title{
-        font-size: 3em;
-        margin: 15px;
+    .game-container {
+        grid-template-columns: repeat(2, auto)
     }
-    .game-info{
-        font-size: 2em;
-    }
-    .game-container{
-        margin: 15px;
-    }
-    @keyframes overlay-grow {
-        from{
-            background-color: rgb(0, 0, 0, 0);
-            font-size: 0;
-        }
-        to{
-            background-color: rgb(0, 0, 0, .8);
-            font-size: 5em;
-        }
-    }
-    .card{
-        width: 80px;
-        height: 120px;
-    }
-    .cob-web{
-        width: 25px;
-        height: 25px;
-    }
-    .card-face:hover .cob-web{
-        width: 35px;
-        height: 35px;
-    }
-    .card-value{
-        transition: transform 100ms ease-in-out;
-        transform: scale(.5);
-    }
-    .card-front:hover .card-value{
-        transform: scale(.6);
-    }
-    .spider{
-        height: 80px;
+
+    .game-info-container {
+        flex-direction: column;
+        align-items: center;
     }
 }

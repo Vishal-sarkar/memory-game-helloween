@@ -4,7 +4,7 @@ class AudioController {
         this.flipSound = new Audio('assets/Audio/flip.wav');
         this.matchSound = new Audio('assets/Audio/match.wav');
         this.victorySound = new Audio('assets/Audio/victory.wav');
-        this.gameOverSound = new Audio('assets/Audio/gameover.wav');
+        this.gameOverSound = new Audio('assets/Audio/gameOver.wav');
         this.bgMusic.volume = 0.3;
         this.bgMusic.loop = true;
     }
